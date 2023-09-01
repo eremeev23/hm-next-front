@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -5,7 +7,6 @@ import TelegramIcon from '@material-ui/icons/Telegram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Category } from "@/types/data";
-import { LinkType } from "@/types/utils";
 
 export const TheFooter = () => {
   const categories = useSelector((state: any) => state.categoriesReducer?.categories);
