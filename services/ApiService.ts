@@ -22,7 +22,7 @@ export class ApiService {
     this.API =
       client ||
       axios.create({
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.NEXT_PUBLIC_BASE_URL,
         withCredentials: true
       });
     this.setInterceptors();

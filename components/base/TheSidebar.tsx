@@ -64,7 +64,7 @@ export const TheSidebar = ({ active, setActive, closeModals, categories }: Props
             className="h-full flex flex-col justify-center"
             onMouseLeave={() => setChildActive(false)}
           >
-            {children?.map((category) => {
+            {children.map((category) => {
               return (
                 <li key={category._id}>
                   <SidebarListItem

@@ -57,9 +57,9 @@ export const HomeProductsCard = ({ product }: IProps) => {
             { product.whitePrice.formattedValue }
           </span>
         </h3>
-        <div className='flex gap-2'>
+        <div className='flex gap-2' >
           {
-            product.rgbColors?.map((color: string, i: number) => {
+            product.rgbColors.map((color: string, i: number) => {
               return (
                 <div
                   key={i}

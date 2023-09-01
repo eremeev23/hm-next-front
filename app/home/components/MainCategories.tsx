@@ -19,7 +19,7 @@ export const MainCategories = ({ categories }: Props) => {
       </h2>
       <div className='hidden sm:flex items-center justify-between gap-2'>
         {
-          categories?.map((category) => (
+          categories.map((category) => (
             <MainCategoriesCard
               key={category.slug}
               category={category}
@@ -39,7 +39,7 @@ export const MainCategories = ({ categories }: Props) => {
           }}
         >
           {
-            categories?.map((category) => (
+            categories.map((category) => (
               <SwiperSlide key={category.slug}>
                 <MainCategoriesCard
                   category={category}

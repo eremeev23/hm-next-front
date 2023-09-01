@@ -1,16 +1,12 @@
 "use client"
 
 import Link from "next/link";
-import { useSelector } from "react-redux";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { Category } from "@/types/data";
 
 export const TheFooter = () => {
-  const categories = useSelector((state: any) => state.categoriesReducer?.categories);
-
   return (
     <footer className='bg-black-600 text-white'>
       <div className='custom-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-10 gap-y-10'>
@@ -20,18 +16,18 @@ export const TheFooter = () => {
           </h3>
           <nav>
             <ul className='grid grid-cols-2 gap-1 overflow-hidden'>
-              {
-                categories?.map((category: Category) => (
-                  <li key={category.slug}>
-                    <Link
-                      href='/'
-                      className='uppercase text-lg font-medium transition-colors hover:text-toxic'
-                    >
-                      { category.name }
-                    </Link>
-                  </li>
-                ))
-              }
+              {/*{*/}
+              {/*  categories.map((category: Category) => (*/}
+              {/*    <li key={category.slug}>*/}
+              {/*      <Link*/}
+              {/*        href='/'*/}
+              {/*        className='uppercase text-lg font-medium transition-colors hover:text-toxic'*/}
+              {/*      >*/}
+              {/*        { category.name }*/}
+              {/*      </Link>*/}
+              {/*    </li>*/}
+              {/*  ))*/}
+              {/*}*/}
             </ul>
           </nav>
         </div>

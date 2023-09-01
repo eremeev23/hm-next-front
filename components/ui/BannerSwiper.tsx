@@ -27,7 +27,7 @@ export const BannerSwiper = ({ slides }: { slides: Product[] }) => {
         }}
         className="banner-swiper"
       >
-        {slides?.map((product: Product) => (
+        {slides.map((product: Product) => (
           <SwiperSlide key={product.code}>
             <BannerSwiperSlide slide={product} />
           </SwiperSlide>
