@@ -9,7 +9,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import {Category} from "@/types/data";
+import { Category } from "@/types/data";
 import { LinkType } from "@/types/utils";
 
 export const TheFooter = () => {
@@ -33,12 +33,12 @@ export const TheFooter = () => {
             <ul className='grid grid-cols-2 gap-1 overflow-hidden'>
               {
                 categories?.map((category: Category) => (
-                  <li key={category.CategoryValue}>
+                  <li key={category.slug}>
                     <Link
                       href='/'
                       className='uppercase text-lg font-medium transition-colors hover:text-toxic'
                     >
-                      { category.CatName }
+                      { category.name }
                     </Link>
                   </li>
                 ))
