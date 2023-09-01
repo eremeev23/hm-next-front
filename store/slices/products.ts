@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createApi } from '@reduxjs/toolkit/query/react'
-import { HYDRATE } from 'next-redux-wrapper'
 import axios from "axios";
-import { Product } from "~/types";
+import { Product } from "@/types/data";
 
 interface IState {
   products: Product[];

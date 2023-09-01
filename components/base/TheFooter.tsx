@@ -1,10 +1,5 @@
-"use client";
-
-import { useEffect } from "react";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/store";
-import { fetchFooterData } from "@/store/slices/footer";
+import { useSelector } from "react-redux";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -13,14 +8,7 @@ import { Category } from "@/types/data";
 import { LinkType } from "@/types/utils";
 
 export const TheFooter = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(fetchFooterData());
-  }, [dispatch]);
-
   const categories = useSelector((state: any) => state.categoriesReducer?.categories);
-  const footerData = useSelector((state: any) => state.footerReducer?.footerData);
 
   return (
     <footer className='bg-black-600 text-white'>
@@ -52,18 +40,18 @@ export const TheFooter = () => {
           </h3>
           <nav>
             <ul className='grid grid-cols-1 gap-1 overflow-hidden'>
-              {
-                footerData?.for_customers?.map((link: LinkType) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className='uppercase text-lg font-medium transition-colors hover:text-toxic'
-                    >
-                      {link.title}
-                    </Link>
-                  </li>
-                ))
-              }
+              {/*{*/}
+              {/*  footerData?.for_customers?.map((link: LinkType) => (*/}
+              {/*    <li key={link.href}>*/}
+              {/*      <Link*/}
+              {/*        href={link.href}*/}
+              {/*        className='uppercase text-lg font-medium transition-colors hover:text-toxic'*/}
+              {/*      >*/}
+              {/*        {link.title}*/}
+              {/*      </Link>*/}
+              {/*    </li>*/}
+              {/*  ))*/}
+              {/*}*/}
             </ul>
           </nav>
         </div>

@@ -8,6 +8,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  &::selection {
+    background-color: #F81CE5;
+    color: #fff;
+  }
 }
 
 body {
