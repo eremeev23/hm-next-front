@@ -2,12 +2,9 @@ import { sha256 } from "js-sha256";
 import { ApiService, CustomCredentials } from "@/services/ApiService";
 import { AxiosError, AxiosResponse } from "axios";
 
-export interface ExpertToUpdate {
-  id: number;
-  email: string;
-  phone: string;
-  password: string | undefined;
-  name: string;
+interface TokenResponse {
+  access_token: string;
+  expired_at: string;
 }
 
 export function fingerprint() {
@@ -23,28 +20,27 @@ export class AuthService {
     this.refreshTokenState = null;
   }
 
-  async login(request: CustomCredentials) {
-    const res = await this.ApiService.post("auth", { ...request, fingerprint: fingerprint() });
+  async login(request: CustomCredentials): Promise<false | TokenResponse> {
+    try {
+      const { data } = await this.ApiService.post<TokenResponse>("auth", {
+        ...request,
+        fingerprint: fingerprint(),
+      });
 
-    localStorage.setItem("loggedIn", JSON.stringify(true));
-    this.ApiService.cookies.set("access_token", res.data.access_token, {
-      secure: true,
-      expires: new Date(res.data.expired_at)
-    });
+      if (!data) return false;
 
-    return res.data;
-  }
+      localStorage.setItem("loggedIn", JSON.stringify(true));
 
-  async loginAdmin(request: CustomCredentials) {
-    const res = await this.ApiService.post("auth/admins/login", { ...request, fingerprint: fingerprint() });
+      this.ApiService.cookies.set("access_token", data.access_token, {
+        secure: true,
+        expires: new Date(data.expired_at)
+      });
 
-    localStorage.setItem("loggedIn", JSON.stringify(true));
-    this.ApiService.cookies.set("access_token", res.data.access_token, {
-      secure: true,
-      expires: new Date(res.data.expired_at)
-    });
-
-    return res.data;
+      return data;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
   }
 
   async logout() {
@@ -63,15 +59,17 @@ export class AuthService {
       throw AxiosError;
     }
 
-    this.refreshTokenState = this.refreshTokenState || this.ApiService.post(`auth/refresh`, data);
+    if (this.refreshTokenState) {
+      this.refreshTokenState = this.refreshTokenState || this.ApiService.post(`auth/refresh`, data);
 
-    const {
-      data: { access_token, expired_at }
-    } = await this.refreshTokenState;
+      const {
+        data: { access_token, expired_at }
+      } = await this.refreshTokenState;
 
-    this.ApiService.cookies.set("access_token", access_token, { secure: true, expires: new Date(expired_at) });
+      this.ApiService.cookies.set("access_token", access_token, { secure: true, expires: new Date(expired_at) });
 
-    return data;
+      return data;
+    }
   }
 
   getAuthHeaders(): { Authorization: string } {
